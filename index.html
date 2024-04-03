@@ -3,20 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="javascript.js"></script>
+    <title>Web Camera</title>
 </head>
 
 <body>
-    <div class="body" id="bdy">
-        <input type="text" placeholder="Password" id="password">
-        <button onclick="Unlock()">Conferma</button>
-        <input type="file" accept="image/*, video/*" capture>
-    </div>
+    <h1>Web Camera</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="captureButton">Capture</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('captureButton');
+        let stream;
+
+        // Access the device camera and stream the video
+        async function initCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+            }
+        }
+
+        // Take a photo
+        function takePhoto() {
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png');
+            // Now you can send this imageData to your server or do whatever you need with it
+            console.log('Image captured:', imageData);
+        }
+
+        // Initialize camera when the page loads
+        window.onload = function () {
+            initCamera().catch(console.error);
+        };
+
+        // Event listener for the capture button
+        captureButton.addEventListener('click', takePhoto);
+    </script>
 </body>
 
 </html>
