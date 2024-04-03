@@ -25,8 +25,15 @@ html {
 
 }
 
+video {
+    width: fit-content;
+    height: fit-content;
+}
+
 canvas {
     display: none;
+    width: fit-content;
+    height: fit-content;
 }
 
 .capture {
