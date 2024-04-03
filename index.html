@@ -42,7 +42,7 @@
                 context.drawImage(video, 0, 0, canvas.width, canvas.height);
                 const imageData = canvas.toDataURL('image/png');
                 // Now you can send this imageData to your server or do whatever you need with it
-                console.log('Image captured:', imageData)
+                console.log('Image captured:', imageData, 'END')
                 video.style.display = "none";
                 canvas.style.display = "block";
                 captureButton.innerHTML = "Retry";
