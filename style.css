@@ -2,8 +2,10 @@ html,
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 html {
@@ -11,24 +13,27 @@ html {
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
-.body {
+.capture {
     border: 1px solid black;
-    height: 700px;
-    width: 300px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: aliceblue;
+    margin: 5px;
+    width: fit-content;
+    height: fit-content;
 
 }
 
-input {
-    padding: 10px;
-    width: 200px;
-    height: 24px;
-    font-size: 24px;
+canvas {
+    display: none;
 }
+
+.capture {
+    height: fit-content;
+    width: fit-content;
+}
+
 
 p {
     margin-bottom: 16px;
@@ -38,6 +43,6 @@ p {
 
 button {
     margin: 20px;
-    padding: 5px 30px;
+    padding: 25px 75px;
     background-color: thistle;
 }
