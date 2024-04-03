@@ -3,15 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Camera</title>
+    <title>Login</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="javascript.js"></script>
 </head>
 
 <body>
-    <h1>Web Camera</h1>
-    <video id="video" width="640" height="480" autoplay></video>
     <button id="captureButton">Capture</button>
-    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <div class="capture">
+        <video id="video" autoplay></video>
+        <canvas id="canvas"></canvas>
+
+    </div>
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
@@ -30,11 +37,22 @@
 
         // Take a photo
         function takePhoto() {
-            const context = canvas.getContext('2d');
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const imageData = canvas.toDataURL('image/png');
-            // Now you can send this imageData to your server or do whatever you need with it
-            console.log('Image captured:', imageData);
+            if (captureButton.innerHTML === "Capture") {
+                const context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const imageData = canvas.toDataURL('image/png');
+                // Now you can send this imageData to your server or do whatever you need with it
+                console.log('Image captured:', imageData)
+                video.style.display = "none";
+                canvas.style.display = "block";
+                captureButton.innerHTML = "Retry";
+            } else {
+                video.style.display = "block";
+                canvas.style.display = "none";
+                captureButton.innerHTML = "Capture";
+            }
+
+
         }
 
         // Initialize camera when the page loads
